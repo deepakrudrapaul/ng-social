@@ -16,7 +16,7 @@ npm install --save ng-social
 
 In `app.module.ts`,
 
-...
+```
 
 import { 
 	NgSocialModule, 
@@ -59,6 +59,8 @@ export function getAuthServiceConfigs() {
   ],
   bootstrap: [...]
 })
+
+
 
 export class AppModule { }
 
