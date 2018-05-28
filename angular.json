@@ -116,6 +116,46 @@
           }
         }
       }
+    },
+    "ng-social": {
+      "root": "projects/ng-social",
+      "sourceRoot": "projects/ng-social/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng-social/tsconfig.lib.json",
+            "project": "projects/ng-social/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/ng-social/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-social/src/test.ts",
+            "tsConfig": "projects/ng-social/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-social/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-social/tsconfig.lib.json",
+              "projects/ng-social/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ng6-social-login"

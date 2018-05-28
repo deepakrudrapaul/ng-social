@@ -1,0 +1,43 @@
+{
+  "name": "ng-social",
+  "version": "1.0.0",
+  "description": "Angular 6 : Social Login (Facebook and Google)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deeppaul7/ng-social.git"
+  },
+  "author": {
+    "name": "Deepak Rudra Paul",
+    "email": "deepakrudrapaul@gmail.com",
+    "facebook": "https://www.facebook.com/deepak.rudra.paul"
+  },
+  "keywords": [
+    "angular",
+    "angular6",
+    "ng6",
+    "angular 5 social login",
+    "angular facebook login",
+    "angular google login",
+    "angular 6 social login",
+    "angular6 social login",
+    "social authentication",
+    "angular social authentication",
+    "angular-social-login",
+    "angular6-social-login",
+    "social-authentication",
+    "social-login",
+    "google-authentication",
+    "angular-google-authentication",
+    "facebook-authentication",
+    "angular-facebook-authentication",
+    "angular module"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deeppaul7/ng-social/issues"
+  },
+  "peerDependencies": {
+    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+  }
+}

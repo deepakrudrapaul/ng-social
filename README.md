@@ -1,27 +1,134 @@
-# Ng6SocialLogin
+Social login api for Angular 6. Includes Facebook and Google login.  
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
+[AOT](https://angular.io/guide/aot-compiler) Compatible.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Getting started
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Install via npm 
 
-## Build
+```sh
+npm install --save ng-social
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Import the module
 
-## Running unit tests
+In `app.module.ts`,
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+...
 
-## Running end-to-end tests
+import { 
+	NgSocialModule, 
+	AuthServiceConfig, 
+	GoogleLoginProvider, 
+	FacebookLoginProvider 
+} from 'ng-social'; 
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
+// Configs
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+export function getAuthServiceConfigs() {
+  let config = new AuthServiceConfig(
+      [
+        {
+          id: FacebookLoginProvider.PROVIDER_ID,
+          provider: new FacebookLoginProvider("1758555154405794")
+        },
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider("1074764438873-k221gusckcgqaalhqnsqn891kjoigcas.apps.googleusercontent.com")
+        },
+      ]
+  );
+  return config;
+}
+
+@NgModule({
+  imports: [
+    ...
+    NgSocialModule
+
+  ],
+  providers: [
+    ...
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    }
+  ],
+  bootstrap: [...]
+})
+
+export class AppModule { }
+
+```
+
+### Usage : 
+
+In `app.component.ts`,
+
+```typescript
+
+import {Component, OnInit} from '@angular/core';
+import {
+    SocialAuthService,
+    FacebookLoginProvider,
+    GoogleLoginProvider
+} from 'ng-social';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+
+
+export class AppComponent {
+
+   constructor(private socialAuthService: SocialAuthService) {}
+  
+  public socialLogin(platform: string) {
+    let socialPlatformProvider;
+
+    if(platform == "facebook") {
+      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+    } else if(platform == "google") {
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    }
+
+    this.socialAuthService.signIn(socialPlatformProvider).then((userData) => {
+      console.log(platform + " login in data : " , userData);
+    });
+
+  }
+  
+}
+```
+
+
+
+In `app.component.html`,
+
+```html
+<h1>
+     Log in
+</h1>
+
+<button (click)="socialLogin('facebook')">Log in with Facebook</button>
+<button (click)="socialLogin('google')">Log in with Google</button>           
+```
+
+
+
+
+### Facebook App Id : 
+
+You need to create your own app by going to [Facebook Developers](https://developers.facebook.com/) page.
+Add `Facebook login` under products and configure `Valid OAuth redirect URIs`.
+
+### Google Client Id : 
+
+Follow this official documentation on how to [
+Create a Google API Console project and client ID](https://developers.google.com/identity/sign-in/web/devconsole-project).
+
