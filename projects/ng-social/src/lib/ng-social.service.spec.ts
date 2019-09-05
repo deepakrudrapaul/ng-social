@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { NgSocialService } from './ng-social.service';
+import { SocialAuthService } from './ng-social.service';
 
 describe('NgSocialService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [NgSocialService]
+      providers: [SocialAuthService]
     });
   });
 
-  it('should be created', inject([NgSocialService], (service: NgSocialService) => {
+  it('should be created', inject([SocialAuthService], (service: SocialAuthService) => {
     expect(service).toBeTruthy();
   }));
 });
