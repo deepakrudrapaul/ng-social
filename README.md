@@ -1,4 +1,4 @@
-Social login api for Angular 6. Includes Facebook and Google login.  
+Social login api for Angular 8. Includes Facebook and Google login.  
 
 [AOT](https://angular.io/guide/aot-compiler) Compatible.
 
